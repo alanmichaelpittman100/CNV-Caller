@@ -7,12 +7,12 @@ Requires the following dependencies/libraries installed under bioconductor:
 
 library("ExomeDepth") \
 library("GenomeInfoDb") \
-library("Rsamtools") \
+library("Rsamtools") 
 
 Requres pre-aligned .bam files.
 
 requires config file with header listing the .bam files you want to analyse \
-save as a config.csv file \
+save as a config.csv file 
 
 #list_of_bam_files \
 1_realigned.bam \
