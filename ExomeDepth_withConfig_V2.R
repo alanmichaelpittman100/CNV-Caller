@@ -15,11 +15,14 @@ data(exons.hg19)
 
 #example config file with header (save as a config.csv file) 
 ################################################
+#requires config file with header listing the .bam files you want to analyse
+#save as a config.csv file 
+
 #list_of_bam_files
-#nmencacci-EXT-DYT70_sorted_unique_realigned.bam
-#nmencacci-EXT-DYT15_sorted_unique_realigned.bam
-#mreilly-IONNG-96136_sorted_unique_realigned.bam
-#mreilly-IONNG-77851_sorted_unique_realigned.bam
+#1_realigned.bam
+#2_realigned.bam
+#3_realigned.bam
+#3_realigned.bam
 
 message('reading config file')
 
