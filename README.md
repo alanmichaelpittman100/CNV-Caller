@@ -11,7 +11,7 @@ library("Rsamtools")
 
 Requres pre-aligned .bam files.
 
-requires config file with header listing the .bam files you want to analyse \
+Requires config file with header listing the .bam files you want to analyse \
 save as a config.csv file 
 
 #list_of_bam_files \
