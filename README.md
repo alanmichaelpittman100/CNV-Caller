@@ -1,5 +1,5 @@
 # CNV-Caller
-Exome CNV caller in R
+## Exome CNV caller in R
 
 Automated script to run ExomeDepth in R to call CNVs in 2 or more Exomes
 
@@ -19,3 +19,5 @@ list_of_bam_files \
 2_realigned.bam \
 3_realigned.bam \
 3_realigned.bam
+
+Includes python script to join outputs from multiple samples into a single excel file for easy of viewing 
