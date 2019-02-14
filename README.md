@@ -20,4 +20,4 @@ list_of_bam_files \
 3_realigned.bam \
 3_realigned.bam
 
-Includes python script to join outputs from multiple samples into a single excel file for easy of viewing 
+Includes python script to join outputs from multiple samples into a single excel file for ease of viewing 
