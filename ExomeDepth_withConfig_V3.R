@@ -23,7 +23,7 @@
 
 library(ExomeDepth)
 
-setwd("/homedirs-porthos/sgul/shares/incc/porthos/Genetics_Centre_Bioinformatics/CNV_calling")
+setwd("/some/directory/of/yours/here/")
 
 data(exons.hg19)
 print(head(exons.hg19))
