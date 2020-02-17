@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ## R Markdown
-## R Vession 3.6.1
+## R Vession 3.6.1 # MAKE SURE YOU USE THE RIGHT VERSION OF R !!!!!
 
 #```{r setup, include=FALSE}
 #knitr::opts_chunk$set(echo = TRUE)
@@ -16,6 +16,8 @@ output: html_document
 
 ```{r}
 library(ExomeDepth)
+library(Rsamtools)
+library(GenomeInfoDb)
 ```
 
 ```{r}
@@ -295,6 +297,23 @@ all.exons <- AnnotateExtra(x = all.exons,
 print(head(all.exons@CNV.calls))
 ```
 
+
+
+#now annotating with exon/gene level information. 
+```{r}
+data(exons.hg19)
+ 
+exons.hg19.GRanges <- GenomicRanges::GRanges(seqnames = exons.hg19$chromosome, 
+											IRanges::IRanges(start=exons.hg19$start,end=exons.hg19$end), 
+											names = exons.hg19$name)
+
+#here the minimum overlap should be very close to 0  
+all.exons <- AnnotateExtra(x = all.exons, 
+						reference.annotation = exons.hg19.GRanges, 
+						min.overlap = 0.0001, 
+						column.name = 'exons.hg19')
+```
+
 Now save it in an easily readable format
 
 ```{r}
@@ -434,10 +453,10 @@ all.exons <- new('ExomeDepth',
 
 all.exons <- CallCNVs(x = all.exons,
                       transition.probability = 10^-4,
-                      chromosome = ExomeCount.dafr$space,
+                      chromosome = ExomeCount.dafr$chromosome,
                       start = ExomeCount.dafr$start,
                       end = ExomeCount.dafr$end,
-                      name = ExomeCount.dafr$names)
+                      name = ExomeCount.dafr$exon)
 
 
 
@@ -465,6 +484,35 @@ all.exons <- AnnotateExtra(x = all.exons,
 
 
 print(head(all.exons@CNV.calls))
+
+#now annotating with exon/gene level information. 
+
+data(exons.hg19)
+ 
+exons.hg19.GRanges <- GenomicRanges::GRanges(seqnames = exons.hg19$chromosome, 
+											IRanges::IRanges(start=exons.hg19$start,end=exons.hg19$end), 
+											names = exons.hg19$name)
+
+#here the minimum overlap should be very close to 0  
+all.exons <- AnnotateExtra(x = all.exons, 
+						reference.annotation = exons.hg19.GRanges, 
+						min.overlap = 0.0001, 
+						column.name = 'exons.hg19')
+
+
+#now annotating with exon/gene level information. 
+
+data(exons.hg19)
+ 
+exons.hg19.GRanges <- GenomicRanges::GRanges(seqnames = exons.hg19$chromosome, 
+											IRanges::IRanges(start=exons.hg19$start,end=exons.hg19$end), 
+											names = exons.hg19$name)
+
+#here the minimum overlap should be very close to 0  
+all.exons <- AnnotateExtra(x = all.exons, 
+						reference.annotation = exons.hg19.GRanges, 
+						min.overlap = 0.0001, 
+						column.name = 'exons.hg19')
 
 
 #Now save it in an easily readable format
