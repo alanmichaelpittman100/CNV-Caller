@@ -4,10 +4,14 @@
 #Use with the congifguration file (list number of samples basically)
 #calls CNVs on sample set(~4-10) using rest as reference files
 
-## R Vession 3.6.1
+## R Vession 3.5.3
+
 ## ExomeDepth 1.1.10
 ## Genomic Ranges 1.32.7
-
+## GenomeInfoDbData 1.1.0
+## Rsamtools 1.32.3 
+## IRanges 2.14.12
+## S4Vectors 0.18.3
 
 #example config file with header (save as a config.csv file) 
 ################################################
@@ -22,8 +26,10 @@
 
 
 library(ExomeDepth)
+library(GenomeInfoDb)
+library(Rsamtools)
 
-setwd("/some/directory/of/yours/here/")
+setwd("/homedirs-porthos/sgul/shares/incc/porthos/Genetics_Centre_Bioinformatics/CNV_calling")
 
 data(exons.hg19)
 print(head(exons.hg19))
@@ -125,6 +131,20 @@ all.exons <- AnnotateExtra(x = all.exons,
 
 
 print(head(all.exons@CNV.calls))
+
+#now annotating with exon/gene level information. 
+
+data(exons.hg19)
+ 
+exons.hg19.GRanges <- GenomicRanges::GRanges(seqnames = exons.hg19$chromosome, 
+											IRanges::IRanges(start=exons.hg19$start,end=exons.hg19$end), 
+											names = exons.hg19$name)
+
+#here the minimum overlap should be very close to 0  
+all.exons <- AnnotateExtra(x = all.exons, 
+						reference.annotation = exons.hg19.GRanges, 
+						min.overlap = 0.0001, 
+						column.name = 'exons.hg19')
 
 #Now save it in an easily readable format
 
