@@ -61,12 +61,6 @@ ExomeCount.mat <- as.matrix(ExomeCount.dafr[, grep(names(ExomeCount.dafr),
 
 print(head(ExomeCount.mat))
 							
-test <- new('ExomeDepth',
-          test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
-          reference = ExomeCount.dafr$S32519_sorted_unique_recalibrated.bam,
-          formula = 'cbind(test, reference) ~ 1',
-          subset.for.speed = seq(1, nrow(ExomeCount.dafr), 100))
-
 message('Now looping over all the samples innit')
 
 nsamples <- ncol(ExomeCount.mat)
