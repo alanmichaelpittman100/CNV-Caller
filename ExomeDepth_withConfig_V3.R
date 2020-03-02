@@ -101,7 +101,7 @@ my.reference.set <- apply(X = my.matrix,
 ## CNV calling
 
 all.exons <- new('ExomeDepth',
-                  test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
+                  test = ExomeCount.mat[,i],
                   reference = my.reference.set,
                   formula = 'cbind(test, reference) ~ 1')
 

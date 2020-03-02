@@ -207,14 +207,14 @@ print(head(ExomeCount.mat))
 ```							
 
 
-```{r}
-test2 <- new('ExomeDepth',
-          test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
-          reference = ExomeCount.dafr$S32519_sorted_unique_recalibrated.bam,
-          formula = 'cbind(test, reference) ~ 1',
-          subset.for.speed = seq(1, nrow(ExomeCount.dafr), 100))
-
-```
+#```{r}
+#test2 <- new('ExomeDepth',
+#          test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
+#          reference = ExomeCount.dafr$S32519_sorted_unique_recalibrated.bam,
+#          formula = 'cbind(test, reference) ~ 1',
+#          subset.for.speed = seq(1, nrow(ExomeCount.dafr), 100))
+#
+#```
 
 ## Build the most appropriate Reference set
 
@@ -385,16 +385,18 @@ print(head(ExomeCount.mat))
 ```							
 
 
+#```{r}
+#test <- new('ExomeDepth',
+#          test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
+#          reference = ExomeCount.dafr$S32519_sorted_unique_recalibrated.bam,
+#          formula = 'cbind(test, reference) ~ 1',
+#          subset.for.speed = seq(1, nrow(ExomeCount.dafr), 100))
+#
+#```
+
 ```{r}
-test <- new('ExomeDepth',
-          test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
-          reference = ExomeCount.dafr$S32519_sorted_unique_recalibrated.bam,
-          formula = 'cbind(test, reference) ~ 1',
-          subset.for.speed = seq(1, nrow(ExomeCount.dafr), 100))
-
-```
-
 message('Now looping over all the samples innit')
+```
 
 ```{r}
 nsamples <- ncol(ExomeCount.mat)
@@ -405,14 +407,7 @@ print(head(nsamples))
 ```{r}
 for (i in 1:nsamples) {
 
-## Build the most appropriate Reference set
-
-
-#my.test <- 'S28449_sorted_unique_recalibrated.bam'
-
 my.test.data <- as.matrix(ExomeCount.mat[, i])
-
-#my.ref.samples <- c('S32519_sorted_unique_recalibrated.bam', 'S29063_sorted_unique_recalibrated.bam')
 
 my.reference.set <- as.matrix(ExomeCount.mat[, -i])
 
@@ -442,7 +437,7 @@ my.reference.set <- apply(X = my.matrix,
 
 
 all.exons <- new('ExomeDepth',
-                  test = ExomeCount.dafr$S28449_sorted_unique_recalibrated.bam,
+                  test = ExomeCount.mat[,i],
                   reference = my.reference.set,
                   formula = 'cbind(test, reference) ~ 1')
 
