@@ -29,7 +29,7 @@ library(ExomeDepth)
 library(GenomeInfoDb)
 library(Rsamtools)
 
-setwd("/homedirs-porthos/sgul/shares/incc/porthos/Genetics_Centre_Bioinformatics/CNV_calling")
+setwd("/Directory/CNV_calling/where_you_want_to_analyse")
 
 data(exons.hg19)
 print(head(exons.hg19))
@@ -59,7 +59,7 @@ print(head(ExomeCount.dafr))
 ExomeCount.mat <- as.matrix(ExomeCount.dafr[, grep(names(ExomeCount.dafr), 
 							pattern = '*.bam')])
 
-print(head(ExomeCount.mat))
+print(head(ExomeCount.mat)) # double check the name of the columns for chromosome, start, end and exon! sometimes it will be space, start, end and name!
 							
 message('Now looping over all the samples innit')
 
